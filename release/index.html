@@ -5,24 +5,19 @@
     <script type="text/javascript" src="connect-streams-min.js"></script>
   </head>
   <!-- Add the call to init() as an onload so it will only run once the page is loaded -->
-  <!-- <body onload="init()"> -->
   <body>
     <tr>
       <td>
-        <div id="container-div" style="width: 400px; height: 800px;"></div>
+        <div id="containerDiv" style="width: 400px; height: 800px;"></div>
       </td>
-    <!-- <div id="containerDiv" style="width: 400px; height: 800px;"></div> -->
       <td>
-        <div id="contact-id"></div>
+        <div id="contact-id">Contact ID : </div>
       </td>
     </tr>
-  <!-- </body> -->
   <script type="text/javascript">
-    var containerDiv = document.getElementById("container-div");
     var instanceURL = "https://horiuyas-test.my.connect.aws/ccp-v2/";
     // initialize the streams api
-    // function init(){
-      // initialize the ccp
+    // initialize the ccp
     connect.core.initCCP(containerDiv, {
       ccpUrl: instanceURL,            // REQUIRED
       loginPopup: true,               // optional, defaults to `true`
@@ -48,12 +43,11 @@
       ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
       ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
     });
-    // }
     // Contact ID 表示
     connect.contact(function(contact) {
       contact.onConnected(function(){
         var originalContactId = contact.getOriginalContactId();
-        document.getElementById('contact-id').textContent=originalContactId;
+        document.getElementById('contact-id').textContent="Contact ID : "+originalContactId;
         console.log("contact-id:"+originalContactId)
       });
     });
