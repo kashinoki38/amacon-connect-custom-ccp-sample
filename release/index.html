@@ -9,9 +9,9 @@
   <body>
     <tr>
       <td>
-        <div id="container-div" style="width: 00px; height: 800px;"></div>
+        <div id="container-div" style="width: 400px; height: 800px;"></div>
       </td>
-    <!-- <div id="containerDiv" style="width: 00px; height: 800px;"></div> -->
+    <!-- <div id="containerDiv" style="width: 400px; height: 800px;"></div> -->
       <td>
         <div id="contact-id"></div>
       </td>
@@ -53,11 +53,8 @@
     connect.contact(function(contact) {
       contact.onConnected(function(){
         var originalContactId = contact.getOriginalContactId();
-        // display() {
-        //   return originalContactId;
-        // }
         document.getElementById('contact-id').textContent=originalContactId;
-        
+        console.log("contact-id:"+originalContactId)
       });
     });
   </script>
