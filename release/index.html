@@ -18,7 +18,7 @@
       </td>
     </tr>
   <script type="text/javascript">
-    var instanceURL = "https://my-instance-domain.my.connect.aws/ccp-v2/";
+    const instanceURL = "https://my-instance-domain.my.connect.aws/ccp-v2/";
     // initialize the streams api
     // initialize the ccp
     connect.core.initCCP(containerDiv, {
@@ -46,12 +46,23 @@
       ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
       ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
     });
+    connect.agent(function(agent){
+      const agentName = agent.getName()
+      document.getElementById('agent-name').textContent="オペレーター名 : "+agentName;
+      
+    });
     // Contact ID 表示
     connect.contact(function(contact) {
       contact.onConnected(function(){
-        var originalContactId = contact.getOriginalContactId();
+        const startDate = new Date();
+        document.getElementById('start-time').textContent="開始時刻 : "+startDate.toLocaleString();
+        const originalContactId = contact.getOriginalContactId();
         document.getElementById('contact-id').textContent="Contact ID : "+originalContactId;
         console.log("contact-id:"+originalContactId)
+      });
+      contact.onEnded(function(){
+        const endDate = new Date();
+        document.getElementById('end-time').textContent="終了時刻 : "+endDate.toLocaleString();
       });
     });
   </script>
